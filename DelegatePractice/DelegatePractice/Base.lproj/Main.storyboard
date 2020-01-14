@@ -1,0 +1,76 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="15701" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="BYZ-38-t0r">
+    <device id="retina6_1" orientation="portrait" appearance="light"/>
+    <dependencies>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="15703"/>
+        <capability name="Safe area layout guides" minToolsVersion="9.0"/>
+        <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
+    </dependencies>
+    <scenes>
+        <!--View Controller-->
+        <scene sceneID="tne-QT-ifu">
+            <objects>
+                <viewController id="BYZ-38-t0r" customClass="ViewController" customModule="DelegatePractice" customModuleProvider="target" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="8bC-Xf-vdC">
+                        <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="sU7-bO-8bd" customClass="SelectionView" customModule="DelegatePractice" customModuleProvider="target">
+                                <rect key="frame" x="0.0" y="124" width="414" height="60"/>
+                                <color key="backgroundColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="60" id="16U-Ua-0AA"/>
+                                </constraints>
+                            </view>
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="4tU-f4-1VM">
+                                <rect key="frame" x="0.0" y="184" width="414" height="100"/>
+                                <color key="backgroundColor" white="0.33333333333333331" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="100" id="ljn-S6-51p"/>
+                                </constraints>
+                            </view>
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="OMP-ux-gkL" customClass="SelectionView" customModule="DelegatePractice" customModuleProvider="target">
+                                <rect key="frame" x="0.0" y="364" width="414" height="60"/>
+                                <color key="backgroundColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="60" id="RYJ-xg-26T"/>
+                                </constraints>
+                            </view>
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="C3U-eP-jnK">
+                                <rect key="frame" x="0.0" y="424" width="414" height="100"/>
+                                <color key="backgroundColor" white="0.33333333333333331" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="100" id="i7a-cj-yk1"/>
+                                </constraints>
+                            </view>
+                        </subviews>
+                        <color key="backgroundColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                        <constraints>
+                            <constraint firstItem="4tU-f4-1VM" firstAttribute="leading" secondItem="6Tk-OE-BBY" secondAttribute="leading" id="2dd-2w-E0z"/>
+                            <constraint firstItem="C3U-eP-jnK" firstAttribute="leading" secondItem="6Tk-OE-BBY" secondAttribute="leading" id="Arg-pF-1zO"/>
+                            <constraint firstItem="sU7-bO-8bd" firstAttribute="top" secondItem="6Tk-OE-BBY" secondAttribute="top" constant="80" id="EWg-zH-ESd"/>
+                            <constraint firstItem="sU7-bO-8bd" firstAttribute="leading" secondItem="6Tk-OE-BBY" secondAttribute="leading" id="HeI-J4-zhF"/>
+                            <constraint firstItem="4tU-f4-1VM" firstAttribute="top" secondItem="sU7-bO-8bd" secondAttribute="bottom" id="NFP-HD-KdW"/>
+                            <constraint firstItem="6Tk-OE-BBY" firstAttribute="trailing" secondItem="4tU-f4-1VM" secondAttribute="trailing" id="Pbr-rW-ftR"/>
+                            <constraint firstItem="C3U-eP-jnK" firstAttribute="top" secondItem="OMP-ux-gkL" secondAttribute="bottom" id="eVb-Ox-KEG"/>
+                            <constraint firstItem="6Tk-OE-BBY" firstAttribute="trailing" secondItem="OMP-ux-gkL" secondAttribute="trailing" id="kUY-Pj-IJD"/>
+                            <constraint firstItem="6Tk-OE-BBY" firstAttribute="trailing" secondItem="C3U-eP-jnK" secondAttribute="trailing" id="oY8-3X-BDz"/>
+                            <constraint firstItem="OMP-ux-gkL" firstAttribute="leading" secondItem="6Tk-OE-BBY" secondAttribute="leading" id="pPF-h4-MqC"/>
+                            <constraint firstItem="6Tk-OE-BBY" firstAttribute="trailing" secondItem="sU7-bO-8bd" secondAttribute="trailing" id="qTa-D8-xK5"/>
+                            <constraint firstItem="OMP-ux-gkL" firstAttribute="top" secondItem="4tU-f4-1VM" secondAttribute="bottom" constant="80" id="vKA-LP-j4W"/>
+                        </constraints>
+                        <viewLayoutGuide key="safeArea" id="6Tk-OE-BBY"/>
+                    </view>
+                    <connections>
+                        <outlet property="downButtonView" destination="OMP-ux-gkL" id="iFU-3D-F5D"/>
+                        <outlet property="downColorView" destination="C3U-eP-jnK" id="JYk-Xp-x2Z"/>
+                        <outlet property="topButtonView" destination="sU7-bO-8bd" id="Hod-fJ-wXe"/>
+                        <outlet property="topColorView" destination="4tU-f4-1VM" id="c7F-kU-Na9"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="137.68115942028987" y="138.61607142857142"/>
+        </scene>
+    </scenes>
+</document>
