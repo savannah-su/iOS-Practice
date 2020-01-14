@@ -35,8 +35,8 @@ extension SelectionViewDataSource {
 }
 
 class SelectionView: UIView {
-    
-    var dataSource: SelectionViewDataSource? {
+    //ARC Retain Cycle
+    weak var dataSource: SelectionViewDataSource? {
         
         didSet {
             setupSelectionView()
@@ -45,7 +45,8 @@ class SelectionView: UIView {
         
     }
     
-    var delegate: SelectionViewDelegate?
+    weak var delegate: SelectionViewDelegate?
+    
     var selectedBtnIndex = 0
     
     let indicatorView = UIView()
@@ -75,8 +76,9 @@ class SelectionView: UIView {
         //每次生成前，先清空
         buttons.removeAll()
         
-        //可用guard let檢查dataSource
-        for buttonIndex in 0 ... (dataSource!.numberOfButton(self) - 1) {
+        //用guard let檢查dataSource
+        guard let dataSource = dataSource else { return }
+        for buttonIndex in 0 ... (dataSource.numberOfButton(self) - 1) {
             
             let button = UIButton()
             
@@ -85,8 +87,8 @@ class SelectionView: UIView {
             self.buttons.append(button)
             
             button.tag = buttonIndex
-            button.setTitle(dataSource?.titleOfButton(self, selectedIndex: buttonIndex), for: .normal)
-            button.setTitleColor(dataSource?.colorOfTitle(self), for: .normal)
+            button.setTitle(dataSource.titleOfButton(self, selectedIndex: buttonIndex), for: .normal)
+            button.setTitleColor(dataSource.colorOfTitle(self), for: .normal)
             button.addTarget(self, action: #selector(selectedItem), for: .touchUpInside)
             
         }
@@ -120,6 +122,7 @@ class SelectionView: UIView {
     //點擊到Button後發生的事件(addTarget須加@objc)
     @objc func selectedItem(sender: UIButton) {
         
+        //先檢查可不可以點選，再顯示顏色跟View滑動
         guard delegate?.couldSelectedButton?(self, selectedIndex: sender.tag) == true else { return }
         delegate?.selectedButton?(self, selectedIndex: sender.tag)
         selectedBtnIndex = sender.tag
@@ -129,9 +132,11 @@ class SelectionView: UIView {
     
     func setupIndicatorView() {
         
+        guard let dataSource = dataSource else { return }
+        
         self.addSubview(indicatorView)
         
-        let color = dataSource?.colorOfIndicator(self) ?? UIColor.blue
+        let color = dataSource.colorOfIndicator(self)
         indicatorView.backgroundColor = color
         
         indicatorView.translatesAutoresizingMaskIntoConstraints = false
@@ -145,7 +150,7 @@ class SelectionView: UIView {
             indicatorView.bottomAnchor.constraint(equalTo: self.bottomAnchor),
             //indicatorView.leadingAnchor.constraint(equalTo: SelectionView.leadingAnchor),
             //indicatorView.trailingAnchor.constraint(equalTo: SelectionView.trailingAnchor),
-            indicatorView.widthAnchor.constraint(equalToConstant: UIScreen.main.bounds.width / CGFloat(dataSource!.numberOfButton(self)) / 2),
+            indicatorView.widthAnchor.constraint(equalToConstant: UIScreen.main.bounds.width / CGFloat(dataSource.numberOfButton(self)) / 2),
             indicatorView.heightAnchor.constraint(equalToConstant: 1),
             
             indicatorCenterXConstraint!
