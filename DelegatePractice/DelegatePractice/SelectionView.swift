@@ -158,15 +158,4 @@ class SelectionView: UIView {
         
     }
     
-    //    init時尚未有dataSource，所以func不能寫這，要寫在didSet
-    //    code走override，storyboard走required
-    //    override init(frame: CGRect) {
-    //        super.init(frame: frame)
-    //
-    //    }
-    //
-    //    required init?(coder: NSCoder) {
-    //        super.init(coder: coder)
-    //
-    //    }
 }
