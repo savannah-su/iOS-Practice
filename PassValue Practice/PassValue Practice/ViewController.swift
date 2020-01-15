@@ -69,22 +69,42 @@ extension ViewController: UITableViewDataSource {
         }
         
         cell.label.text = content[indexPath.row]
-        //target Action
-        //(1)cell.deleteBtn.tag = indexPath.row
-        cell.deleteBtn.addTarget(self, action: #selector(deleteContent(sender:)), for: .touchUpInside)
+        
+        //**********Closure**********//
+        //Closure(step2)
+        cell.closure = {_ in
+            
+            self.content.remove(at: indexPath.row)
+            self.tableView.reloadData()
+            
+        }
+        
+        //**********Target Action**********//
+        //方法ㄧ(step1)
+        //cell.deleteBtn.tag = indexPath.row
+        
+        //方法二(step1)
+        //cell.deleteBtn.addTarget(self, action: #selector(deleteContent(sender:)), for: .touchUpInside)
         
         return cell
     }
-    //target Action
-    @objc func deleteContent(sender: UIButton) {
-        //btn的superview的superview是cell，去拿到indexPath
-        guard let cell = sender.superview?.superview as? TableViewCell, let indexPath = tableView.indexPath(for: cell) else { return }
-        //先去array裡面刪掉資料
-        content.remove(at: indexPath.row)
-        //此func包含reload TabelView
-        tableView.deleteRows(at: [indexPath], with: .automatic)
+    
+    //**********Target Action**********//
+    //@objc func deleteContent(sender: UIButton) {
         
-    }
+        //方法ㄧ(step2)
+        //content.remove(at: sender.tag)
+        //tableView.reloadData()
+        
+        //方法二(step2)
+        //btn的superview的superview是cell，去拿到indexPath
+        //guard let cell = sender.superview?.superview as? TableViewCell, let indexPath = tableView.indexPath(for: cell) else { return }
+        //先去array裡面刪掉資料
+        //content.remove(at: indexPath.row)
+        //此func包含reload TabelView
+        //tableView.deleteRows(at: [indexPath], with: .automatic)
+        
+    //}
 }
 
 extension ViewController: ContentDelegate {

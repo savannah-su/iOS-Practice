@@ -9,12 +9,16 @@
 import UIKit
 
 class TableViewCell: UITableViewCell {
+    
+    //**********Closure**********//
+    //Closure(step1)
+    var closure: ((UITableViewCell) -> Void)?
 
     @IBOutlet weak var label: UILabel!
     @IBOutlet weak var deleteBtn: UIButton!
     @IBAction func deleteBtn(_ sender: Any) {
         
-        
+        closure?(self)
     }
     
     
