@@ -38,8 +38,32 @@ class ViewController: UIViewController {
         //let nextVC = TextViewController()
         nextVC.textField.text = text
         nextVC.index = index
+        
+        //**********Button-Delegate**********//
+        //Delegate(step5)
         //跟要資料VC有關連的地方叫出delegate
-        nextVC.delegate = self
+        //nextVC.delegate = self
+        
+        //**********Button-Closure**********//
+        //Closure(step3)
+        nextVC.buttonClosure = {(text, index) in
+            
+            guard let index = index  else {
+                
+                self.newContent = text
+                self.content.append(self.newContent)
+                self.tableView.reloadData()
+                self.navigationController?.popViewController(animated: true)
+                
+                return
+                
+            }
+                
+                self.content[index] = text
+                self.tableView.reloadData()
+                self.navigationController?.popViewController(animated: true)
+            
+        }
         
         show(nextVC, sender: nil)
     }
@@ -77,10 +101,10 @@ extension ViewController: UITableViewDataSource {
         //**********Remove-Closure**********//
         //Closure(step2)
         //cell.closure = {_ in
-            
-            //self.content.remove(at: indexPath.row)
-            //self.tableView.reloadData()
-            
+        
+        //self.content.remove(at: indexPath.row)
+        //self.tableView.reloadData()
+        
         //}
         
         //**********Remove-Target Action**********//
@@ -95,22 +119,25 @@ extension ViewController: UITableViewDataSource {
     
     //**********Remove-Target Action**********//
     //@objc func deleteContent(sender: UIButton) {
-        
-        //方法ㄧ(step2)
-        //content.remove(at: sender.tag)
-        //tableView.reloadData()
-        
-        //方法二(step2)
-        //btn的superview的superview是cell，去拿到indexPath
-        //guard let cell = sender.superview?.superview as? TableViewCell, let indexPath = tableView.indexPath(for: cell) else { return }
-        //先去array裡面刪掉資料
-        //content.remove(at: indexPath.row)
-        //此func包含reload TabelView
-        //tableView.deleteRows(at: [indexPath], with: .automatic)
-        
+    
+    //方法ㄧ(step2)
+    //content.remove(at: sender.tag)
+    //tableView.reloadData()
+    
+    //方法二(step2)
+    //btn的superview的superview是cell，去拿到indexPath
+    //guard let cell = sender.superview?.superview as? TableViewCell, let indexPath = tableView.indexPath(for: cell) else { return }
+    //先去array裡面刪掉資料
+    //content.remove(at: indexPath.row)
+    //此func包含reload TabelView
+    //tableView.deleteRows(at: [indexPath], with: .automatic)
+    
     //}
 }
 
+
+//**********Button-Delegate**********//
+//Delegate(step4)
 extension ViewController: ContentDelegate {
     
     func updateContent(text: String, index: Int) {
@@ -129,7 +156,6 @@ extension ViewController: ContentDelegate {
 
 //**********Remove-Delegate**********//
 //Delegate(step4)
-
 extension ViewController: removeContentDelegate {
     
     func removeContent(from tableViewCell: TableViewCell) {

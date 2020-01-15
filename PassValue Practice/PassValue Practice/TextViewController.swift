@@ -10,6 +10,12 @@ import UIKit
 
 class TextViewController: UIViewController {
     
+    //**********Button-Closure**********//
+    //Closure(step1)
+    var buttonClosure: ((String, Int?) -> ())?
+    
+    //**********Button-Delegate**********//
+    //Delegate(step2)
     weak var delegate: ContentDelegate?
     var index: Int?
     
@@ -65,22 +71,32 @@ class TextViewController: UIViewController {
     
     @objc func touchButton() {
         
-        //guard textField.text != nil else { return }後，下面可以直接加!且不會閃退
+        //**********Button-Closure**********//
+        //Closure(step2)
         guard let text = textField.text else { return }
-        guard let index = index else {
-            
-            self.delegate?.createNewContent(text: text)
-            navigationController?.popViewController(animated: true)
-            return
-        }
+        guard let index = index else { return}
+        buttonClosure?(text, index)
         
-        self.delegate?.updateContent(text: text, index: index)
-        navigationController?.popViewController(animated: true)
+        //**********Button-Delegate**********//
+        //Delegate(step3)
+        //guard textField.text != nil else { return }後，下面可以直接加!且不會閃退
+        //guard let text = textField.text else { return }
+        //guard let index = index else {
+            
+            //self.delegate?.createNewContent(text: text)
+            //navigationController?.popViewController(animated: true)
+            //return
+        //}
+        
+        //self.delegate?.updateContent(text: text, index: index)
+        //navigationController?.popViewController(animated: true)
         
     }
     
 }
 
+//**********Button-Delegate**********//
+//Delegate(step1)
 protocol ContentDelegate: AnyObject {
     
     func createNewContent(text: String)
