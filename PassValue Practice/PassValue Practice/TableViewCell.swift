@@ -10,15 +10,24 @@ import UIKit
 
 class TableViewCell: UITableViewCell {
     
-    //**********Closure**********//
+    //**********Remove-Delegate**********//
+    //Delegate(step2)
+    var removeDelegate: removeContentDelegate?
+    
+    //**********Remove-Closure**********//
     //Closure(step1)
-    var closure: ((UITableViewCell) -> Void)?
+    //var closure: ((UITableViewCell) -> Void)?
 
     @IBOutlet weak var label: UILabel!
     @IBOutlet weak var deleteBtn: UIButton!
     @IBAction func deleteBtn(_ sender: Any) {
         
-        closure?(self)
+        //**********Remove-Delegate**********//
+        //Delegate(step3)
+        removeDelegate?.removeContent(from: self)
+        //**********Remove-Closure**********//
+        //Closure(step3)
+        //closure?(self)
     }
     
     
@@ -33,4 +42,14 @@ class TableViewCell: UITableViewCell {
         // Configure the view for the selected state
     }
 
+}
+
+
+//**********Remove-Delegate**********//
+//Delegate(step1)
+
+protocol removeContentDelegate {
+    
+    func removeContent(from tableViewCell: TableViewCell)
+    
 }

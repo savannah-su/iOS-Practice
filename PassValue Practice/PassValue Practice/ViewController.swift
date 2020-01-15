@@ -70,16 +70,20 @@ extension ViewController: UITableViewDataSource {
         
         cell.label.text = content[indexPath.row]
         
-        //**********Closure**********//
-        //Closure(step2)
-        cell.closure = {_ in
-            
-            self.content.remove(at: indexPath.row)
-            self.tableView.reloadData()
-            
-        }
+        //**********Remove-Delegate**********//
+        //Delegate(step5)
+        cell.removeDelegate = self
         
-        //**********Target Action**********//
+        //**********Remove-Closure**********//
+        //Closure(step2)
+        //cell.closure = {_ in
+            
+            //self.content.remove(at: indexPath.row)
+            //self.tableView.reloadData()
+            
+        //}
+        
+        //**********Remove-Target Action**********//
         //方法ㄧ(step1)
         //cell.deleteBtn.tag = indexPath.row
         
@@ -89,7 +93,7 @@ extension ViewController: UITableViewDataSource {
         return cell
     }
     
-    //**********Target Action**********//
+    //**********Remove-Target Action**********//
     //@objc func deleteContent(sender: UIButton) {
         
         //方法ㄧ(step2)
@@ -119,5 +123,22 @@ extension ViewController: ContentDelegate {
         self.newContent = text
         self.content.append(newContent)
         tableView.reloadData()
+    }
+}
+
+
+//**********Remove-Delegate**********//
+//Delegate(step4)
+
+extension ViewController: removeContentDelegate {
+    
+    func removeContent(from tableViewCell: TableViewCell) {
+        
+        guard let indexPath = tableView.indexPath(for: tableViewCell) else { return }
+        
+        content.remove(at: indexPath.row)
+        tableView.reloadData()
+        
+        //tableView.deleteRows(at: [indexPath], with: .automatic)
     }
 }
