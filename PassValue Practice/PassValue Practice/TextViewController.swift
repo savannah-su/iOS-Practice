@@ -11,6 +11,7 @@ import UIKit
 class TextViewController: UIViewController {
     
     weak var delegate: ContentDelegate?
+    var index: Int?
     
     let textField = UITextField()
     let button = UIButton()
@@ -66,8 +67,14 @@ class TextViewController: UIViewController {
         
         //guard textField.text != nil else { return }後，下面可以直接加!且不會閃退
         guard let text = textField.text else { return }
-        self.delegate?.getContent(text: text)
+        guard let index = index else {
+            
+            self.delegate?.createNewContent(text: text)
+            navigationController?.popViewController(animated: true)
+            return
+        }
         
+        self.delegate?.updateContent(text: text, index: index)
         navigationController?.popViewController(animated: true)
         
     }
@@ -76,5 +83,7 @@ class TextViewController: UIViewController {
 
 protocol ContentDelegate: AnyObject {
     
-    func getContent(text: String)
+    func createNewContent(text: String)
+    
+    func updateContent(text: String, index: Int)
 }
