@@ -38,6 +38,7 @@ class ViewController: UIViewController {
         //let nextVC = TextViewController()
         nextVC.textField.text = text
         nextVC.index = index
+        //跟要資料VC有關連的地方叫出delegate
         nextVC.delegate = self
         
         show(nextVC, sender: nil)
@@ -68,13 +69,21 @@ extension ViewController: UITableViewDataSource {
         }
         
         cell.label.text = content[indexPath.row]
-//        cell.delegate = self
-        
-        //for index in 2 ... 5 {
-        //cell[indexPath.row].label.text = "\(index)"
-        //}
+        //target Action
+        //(1)cell.deleteBtn.tag = indexPath.row
+        cell.deleteBtn.addTarget(self, action: #selector(deleteContent(sender:)), for: .touchUpInside)
         
         return cell
+    }
+    //target Action
+    @objc func deleteContent(sender: UIButton) {
+        //btn的superview的superview是cell，去拿到indexPath
+        guard let cell = sender.superview?.superview as? TableViewCell, let indexPath = tableView.indexPath(for: cell) else { return }
+        //先去array裡面刪掉資料
+        content.remove(at: indexPath.row)
+        //此func包含reload TabelView
+        tableView.deleteRows(at: [indexPath], with: .automatic)
+        
     }
 }
 
