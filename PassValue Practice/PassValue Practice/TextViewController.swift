@@ -74,7 +74,7 @@ class TextViewController: UIViewController {
         //**********Button-Closure**********//
         //Closure(step2)
         guard let text = textField.text else { return }
-        guard let index = index else { return}
+        //不用寫guard let index = index else { return }，交給ViewController去判斷
         buttonClosure?(text, index)
         
         //**********Button-Delegate**********//
