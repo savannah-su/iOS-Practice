@@ -14,6 +14,7 @@
 		245A661423D035AB001CC70A /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 245A661223D035AB001CC70A /* LaunchScreen.storyboard */; };
 		245A661F23D035AB001CC70A /* Auto_Layout_Event_CycleTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 245A661E23D035AB001CC70A /* Auto_Layout_Event_CycleTests.swift */; };
 		245A662A23D035AB001CC70A /* Auto_Layout_Event_CycleUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 245A662923D035AB001CC70A /* Auto_Layout_Event_CycleUITests.swift */; };
+		245A663823D0677A001CC70A /* CircleView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 245A663723D0677A001CC70A /* CircleView.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -47,6 +48,7 @@
 		245A662523D035AB001CC70A /* Auto Layout Event CycleUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = "Auto Layout Event CycleUITests.xctest"; sourceTree = BUILT_PRODUCTS_DIR; };
 		245A662923D035AB001CC70A /* Auto_Layout_Event_CycleUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Auto_Layout_Event_CycleUITests.swift; sourceTree = "<group>"; };
 		245A662B23D035AB001CC70A /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		245A663723D0677A001CC70A /* CircleView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CircleView.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -99,6 +101,7 @@
 			children = (
 				245A660723D035A7001CC70A /* AppDelegate.swift */,
 				245A660B23D035A7001CC70A /* ViewController.swift */,
+				245A663723D0677A001CC70A /* CircleView.swift */,
 				245A660D23D035A7001CC70A /* Main.storyboard */,
 				245A661023D035AB001CC70A /* Assets.xcassets */,
 				245A661223D035AB001CC70A /* LaunchScreen.storyboard */,
@@ -257,6 +260,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				245A660C23D035A7001CC70A /* ViewController.swift in Sources */,
+				245A663823D0677A001CC70A /* CircleView.swift in Sources */,
 				245A660823D035A7001CC70A /* AppDelegate.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
