@@ -26,7 +26,7 @@ class ViewController: UIViewController {
     }
     
     override func viewWillAppear(_ animated: Bool) {
-        super.viewWillAppear(true)
+        super.viewWillAppear(animated)
     }
     
     override func viewWillLayoutSubviews() {
@@ -38,16 +38,20 @@ class ViewController: UIViewController {
     override func viewDidLayoutSubviews() {
         super.viewDidLayoutSubviews()
         
+        yellowCircle.clipsToBounds = true
         yellowCircle.layer.cornerRadius = yellowCircle.frame.width / 2
         
         yellowCircle.layoutIfNeeded()
         
+        purpleCircle.clipsToBounds = true
         purpleCircle.layer.cornerRadius = purpleCircle.frame.width / 2
+        
+        redCircle.clipsToBounds = true
         redCircle.layer.cornerRadius = redCircle.frame.width / 2
     }
     
     override func viewDidAppear(_ animated: Bool) {
-        super.viewDidAppear(true)
+        super.viewDidAppear(animated)
     }
     
     
