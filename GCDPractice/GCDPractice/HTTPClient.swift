@@ -96,7 +96,7 @@ class speedDataManager {
         default: return
         }
         
-        //URLSession最大連接數量，default = 1
+        //URLSession queue(operation queue)最大連接數量default = 1(serial queue)，不把值改大只能前一個完成才能執行下一個
         URLSession.shared.delegateQueue.maxConcurrentOperationCount = 10
         
         URLSession.shared.dataTask(with: offsetRequest!) { (data, response, error) in
